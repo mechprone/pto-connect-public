@@ -1,16 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import PricingPage from './pages/PricingPage';
-import CreatePTOPage from './pages/CreatePTOPage';
-import SuccessPage from './pages/SuccessPage';
-import CancelPage from './pages/CancelPage';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import PricingPage from './pages/PricingPage'
+import CreatePTOPage from './pages/CreatePTOPage'
+import SuccessPage from './pages/SuccessPage'
+import CancelPage from './pages/CancelPage'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 export default function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen font-sans">
         <Header />
         <main className="flex-grow">
           <Routes>
@@ -24,5 +24,5 @@ export default function App() {
         <Footer />
       </div>
     </Router>
-  );
+  )
 }
