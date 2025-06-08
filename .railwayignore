@@ -14,8 +14,8 @@ pnpm-debug.log*
 coverage
 .nyc_output
 .cache
-dist/.cache
 .pnpm-store
 .pnpm
 **/.pnpm
 **/node_modules/.pnpm
+dist
