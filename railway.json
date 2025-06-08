@@ -1,6 +1,6 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "deploy": {
-    "startCommand": "npx serve dist -s -p 3000"
+    "startCommand": "nginx -g 'daemon off;'"
   }
 }
