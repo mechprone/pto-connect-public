@@ -2,13 +2,13 @@
 nixPkgs = ["nodejs", "pnpm"]
 
 [phases.install]
-cmds = ["pnpm install --frozen-lockfile"]
+cmds = [
+  "pnpm install --frozen-lockfile",
+  "pnpm install picomatch@4.0.2"
+]
 
 [phases.build]
-cmds = [
-  "chmod +x node_modules/.bin/vite",
-  "npx vite build"
-]
+cmds = ["pnpm run build"]
 
 [start]
 cmd = "npx serve dist -s -p 3000"
