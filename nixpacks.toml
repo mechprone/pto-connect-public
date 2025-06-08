@@ -3,8 +3,8 @@ nixPkgs = ["nodejs", "pnpm"]
 
 [phases.install]
 cmds = [
-  "pnpm install --frozen-lockfile",
-  "pnpm install picomatch@4.0.2"
+  "rm -rf node_modules",
+  "pnpm install --frozen-lockfile"
 ]
 
 [phases.build]
