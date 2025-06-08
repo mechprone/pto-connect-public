@@ -1,46 +1,31 @@
-# Build stage
-FROM node:18-alpine AS builder
+FROM node:20-slim
 
-# Install pnpm
-RUN npm install -g pnpm
-
-# Set working directory
 WORKDIR /app
 
+# Install system dependencies for native modules
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy package files
-COPY package.json pnpm-lock.yaml ./
+COPY package*.json ./
 
-# Install dependencies with no symlinks to avoid conflicts
-RUN pnpm install --frozen-lockfile --shamefully-hoist
+# Clean install with proper architecture modules
+RUN npm ci --only=production
 
-# Copy source code (excluding node_modules via .dockerignore)
-COPY src ./src
-COPY index.html ./
-COPY vite.config.js ./
-COPY tailwind.config.js ./
-COPY postcss.config.js ./
+# Copy source code
+COPY . .
 
 # Build the application
-RUN pnpm run build
+RUN npm run build
 
-# Production stage
-FROM nginx:alpine
-
-# Copy built files from builder stage
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Copy nginx configuration for SPA
-RUN echo 'server { \
-    listen 3000; \
-    location / { \
-        root /usr/share/nginx/html; \
-        index index.html index.htm; \
-        try_files $uri $uri/ /index.html; \
-    } \
-}' > /etc/nginx/conf.d/default.conf
+# Install serve globally
+RUN npm install -g serve
 
 # Expose port
-EXPOSE 3000
+EXPOSE 10000
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start the application
+CMD ["serve", "dist", "-s", "-l", "10000"]
