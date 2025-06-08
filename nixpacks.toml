@@ -5,7 +5,7 @@ nixPkgs = ["nodejs", "pnpm"]
 cmds = ["pnpm install --frozen-lockfile"]
 
 [phases.build]
-cmds = ["pnpm run build"]
+cmds = ["pnpm exec vite build"]
 
 [start]
 cmd = "npx serve dist -s -p 3000"
