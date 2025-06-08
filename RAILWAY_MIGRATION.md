@@ -61,7 +61,7 @@ cmd = "npx serve dist -s -l 3000"
 ### 4. Environment Variables
 ```
 NODE_ENV=production
-VITE_API_URL=https://pto-connect-backend.onrender.com
+VITE_API_URL=https://api.ptoconnect.com
 VITE_STRIPE_PUBLISHABLE_KEY=[your key]
 ```
 
