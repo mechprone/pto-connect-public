@@ -5,7 +5,10 @@ nixPkgs = ["nodejs", "pnpm"]
 cmds = ["pnpm install --frozen-lockfile"]
 
 [phases.build]
-cmds = ["pnpm run build"]
+cmds = [
+  "chmod +x node_modules/.bin/*",
+  "pnpm run build"
+]
 
 [start]
 cmd = "npx serve dist -s -p 3000"
